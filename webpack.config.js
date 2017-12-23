@@ -60,9 +60,9 @@ const postcssPlugins = function () {
 };
 
 const isProd = (process.env.NODE_ENV === 'production');
-
 //add all external css to be added in our index.html--> like as if it's .angular-cli.json
 const styles = [
+  "./node_modules/bootstrap/dist/css/bootstrap.min.css",
   "./src/styles.scss"
 ];
 

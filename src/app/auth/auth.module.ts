@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './containers/auth/auth.component';
 import { RouterModule } from '@angular/router';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [
@@ -13,8 +15,11 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   declarations: [
-    AuthComponent
+    AuthComponent,
+    AuthFormComponent
   ],
-  providers: []
+  providers: [
+    AuthService
+  ]
 })
 export class AuthModule { }

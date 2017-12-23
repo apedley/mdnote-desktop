@@ -1,3 +1,8 @@
-<div>
-  header
+<div *ngIf="!(authenticated | async)">
+  <a [routerLink]="['/signin']">Sign In</a>
+  <a [routerLink]="['/signup']">Sign Up</a>
+</div>
+<div *ngIf="(authenticated | async)">
+  <a [routerLink]="['/signout']">Sign Out</a>
+  <span>Welcome, {{ (user | async).email }}</span>
 </div>

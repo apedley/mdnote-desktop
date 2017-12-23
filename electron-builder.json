@@ -1,5 +1,5 @@
 {
-  "productName": "angular-electron",
+  "productName": "mdnote",
   "directories": {
     "app": "dist",
     "output": "app-builds"
@@ -11,6 +11,7 @@
     ]
   },
   "mac": {
+    "category": "public.app-category.productivity",
     "icon": "dist/favicon",
     "target": [
       "dmg"

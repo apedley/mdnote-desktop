@@ -1,8 +1,7 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, Tray, Menu } from 'electron';
 import * as path from 'path';
-import { environment } from './src/environments/index';
 
-let win, serve;
+let win, serve, tray;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
@@ -12,21 +11,33 @@ if (serve) {
 }
 
 function createWindow() {
-
   const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  let size;
+
+  if (serve) {
+    size = {
+      height: 600,
+      width: 800
+    }
+
+  } else {
+    app.dock.hide();
+    size = {
+      height: 600,
+      width: 800
+    }
+  }
 
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
     y: 0,
     width: size.width,
-    height: size.height
+    height: size.height,
+    show: false
   });
 
-
-
-  if (!environment.production) {
+  if (serve) {
     BrowserWindow.addDevToolsExtension('/Users/andrew/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.15.1_0');
   }
   // and load the index.html of the app.
@@ -44,6 +55,50 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
+
+  win.on('ready-to-show', () => {
+    const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
+    let iconPath;
+
+    if (serve) {
+      iconPath = path.join(__dirname, `./assets/${iconName}`);
+      win.show();
+    } else {
+      iconPath = path.join(__dirname, `./assets/${iconName}`);
+    }
+
+    // tray = new MdNoteTray(iconPath, win);
+    tray = new Tray(iconPath);
+
+    tray.on('click', (event, bounds) => {
+      const { x, y } = bounds;
+      const { height, width } = win.getBounds();
+
+      if (win.isVisible()) {
+        win.hide();
+      } else {
+        const yPosition = process.platform === 'darwin' ? y : y - height;
+        win.setBounds({
+          x: x - width / 2,
+          y: yPosition,
+          height,
+          width
+        });
+        win.show();
+      }
+    });
+
+    tray.on('right-click', (event) => {
+      const menuConfig = Menu.buildFromTemplate([
+        {
+          label: 'Quit',
+          click: () => app.quit()
+        }
+      ]);
+
+      tray.popUpContextMenu(menuConfig);
+    })
+  })
 }
 
 try {
