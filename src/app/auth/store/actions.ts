@@ -12,6 +12,7 @@ export const SIGNIN_FAILURE = '[Auth] Signin Failure';
 export const SIGNOUT = '[Auth] Signout';
 
 export const READ_LOCAL_AUTH_DATA = '[Auth] Read Local Auth Data';
+export const READ_LOCAL_AUTH_DATA_FAILURE = '[Auth] Read Local Auth Data Failue';
 export const LOAD_LOCAL_AUTH_DATA = '[Auth] Load Local Auth Data';
 
 export class Signup implements Action {

@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './api.service';
+import { StorageService } from './storage.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ApiService } from './api.service';
   exports: [
     HeaderComponent,
     LayoutComponent,
-    HomeViewComponent
+    HomeViewComponent,
+    NgbModule
   ],
   declarations: [
     LayoutComponent,
@@ -26,7 +28,8 @@ import { ApiService } from './api.service';
   ],
   providers: [
     ElectronService,
-    ApiService
+    ApiService,
+    StorageService
   ]
 })
 export class CoreModule { }

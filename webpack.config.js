@@ -63,6 +63,7 @@ const isProd = (process.env.NODE_ENV === 'production');
 //add all external css to be added in our index.html--> like as if it's .angular-cli.json
 const styles = [
   "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "./node_modules/font-awesome/css/font-awesome.min.css",
   "./src/styles.scss"
 ];
 
@@ -260,7 +261,8 @@ module.exports = {
     "string_decoder": "require('string_decoder')",
     "url": "require('url')",
     "util": "require('util')",
-    "zlib": "require('zlib')"
+    "zlib": "require('zlib')",
+    "electron-settings": "require('electron-settings')"
   },
   "resolve": {
     "extensions": [

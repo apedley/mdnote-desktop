@@ -6,6 +6,8 @@ import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import * as auth from './actions';
 import { ApiService } from '../../core/api.service';
+import { StorageService } from '../../core/storage.service';
+import { AuthService } from '../auth.service';
 
 
 @Injectable()
@@ -35,22 +37,26 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   saveAuthInfo = this.actions.ofType(auth.SIGNIN_SUCCESS).pipe(
     map((action: auth.SigninSuccess) => {
+      this.authService.saveAuthData(action.payload);
+
       this.router.navigate(['/']);
-      localStorage.setItem('authInfo', JSON.stringify(action.payload));
     })
   );
 
   @Effect()
-  loadLocalAuthData = this.actions.ofType(auth.READ_LOCAL_AUTH_DATA).pipe(
+  readLocalAuthData = this.actions.ofType(auth.READ_LOCAL_AUTH_DATA).pipe(
     map((action: auth.LoadLocalAuthData) => {
-      const info = localStorage.getItem('authInfo');
-      if (!info) {
-        return;
+      const results = this.authService.getLocalData();
+
+      if (!results) {
+        return {
+          type: auth.READ_LOCAL_AUTH_DATA_FAILURE
+        }
       }
-      const payload = JSON.parse(info);
+
       return {
         type: auth.LOAD_LOCAL_AUTH_DATA,
-        payload: payload
+        payload: results
       };
     })
   );
@@ -62,6 +68,6 @@ export class AuthEffects {
       this.router.navigate(['/signin']);
     })
   );
-  constructor(private actions: Actions, private router: Router, private api: ApiService) {}
+  constructor(private actions: Actions, private router: Router, private api: ApiService, private authService: AuthService) {}
 
 }

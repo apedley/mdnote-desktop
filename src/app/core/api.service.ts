@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { environment } from '../../environments';
 import { AuthService } from '../auth/auth.service';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 
+import { Category, Note } from '../notes/note.model';
 
 @Injectable()
 export class ApiService {
@@ -28,5 +30,36 @@ export class ApiService {
     const url = `${environment.apiBaseUrl}/signin`;
 
     return this.httpClient.post(url, userInfo);
+  }
+
+  getAllCategories() {
+    const url = `${environment.apiBaseUrl}/categories`;
+    const authHeader = `bearer ${this.authToken}`;
+
+    return this.httpClient.get<[Category]>(url, {
+      headers: new HttpHeaders().set('Authorization', authHeader)
+    });
+
+  }
+
+  getNotesAndCategories() {
+    const categoriesUrl = `${environment.apiBaseUrl}/categories`;
+    const notesUrl = `${environment.apiBaseUrl}/notes`;
+    const authHeader = `bearer ${this.authToken}`;
+
+    const categoriesResult = this.httpClient.get<[Category]>(categoriesUrl, {
+      headers: new HttpHeaders().set('Authorization', authHeader)
+    });
+
+    const notesResult = this.httpClient.get<[Note]>(notesUrl, {
+      headers: new HttpHeaders().set('Authorization', authHeader)
+    });
+
+    return forkJoin([categoriesResult, notesResult], (categories, notes) => {
+      return {
+        categories,
+        notes
+      }
+    });
   }
 }

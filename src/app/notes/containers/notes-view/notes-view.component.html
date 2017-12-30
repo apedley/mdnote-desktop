@@ -1,0 +1,22 @@
+<app-layout>
+
+  <div *ngFor="let category of categories | async">
+    <app-category-list-item [category]="category" [collapsed]="(collapsedCategories | async)[category.id] === true" (categoryClicked)="toggleCategory($event)" ></app-category-list-item>
+  </div>
+  <!-- <p>
+    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Toggle
+    </button>
+  </p>
+  <div id="collapseExample" [ngbCollapse]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        You can collapse this card by clicking Toggle
+      </div>
+    </div>
+  </div> -->
+  <!-- <div>
+    {{ (categories | async) | json }}
+  </div> -->
+</app-layout>

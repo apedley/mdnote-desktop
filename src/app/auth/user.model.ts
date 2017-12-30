@@ -12,3 +12,8 @@ export interface Authenticate {
   email: string;
   password: string;
 }
+
+export interface AuthData {
+  user: User;
+  token: string;
+}

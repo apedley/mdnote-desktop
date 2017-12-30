@@ -53,7 +53,15 @@ function createWindow() {
     // Dereference the window object, usually you would store window
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    win = null;
+    // win = null;
+    // win.hide();
+  });
+
+  win.on('close', (event) => {
+    if (!serve) {
+      event.preventDefault();
+    }
+    win.hide();
   });
 
   win.on('ready-to-show', () => {
@@ -102,7 +110,6 @@ function createWindow() {
 }
 
 try {
-
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.

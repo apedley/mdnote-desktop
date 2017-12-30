@@ -6,13 +6,15 @@ import * as fromRoot from '../reducers';
 import * as auth from './store/actions';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
-import { Authenticate, User } from './user.model';
+import { Authenticate, User, AuthData } from './user.model';
 import { Store } from '@ngrx/store';
+import { StorageService } from '../core/storage.service';
+
 
 @Injectable()
 export class AuthService {
 
-  constructor(private authStore: Store<fromAuth.State>) {}
+  constructor(private authStore: Store<fromAuth.State>, private storage: StorageService) {}
 
   signup(userData: Authenticate) {
     this.authStore.dispatch(new auth.Signup(userData));
@@ -23,7 +25,31 @@ export class AuthService {
   }
 
   signout() {
+    this.deleteLocalData();
     this.authStore.dispatch(new auth.Signout());
+  }
+
+  saveAuthData(data: AuthData) {
+    this.storage.set('auth', data);
+  }
+
+  getLocalData() {
+    const data = this.storage.get('auth');
+
+    if (!data) {
+      return false;
+    }
+
+    return data;
+  }
+
+
+  loadLocalData() {
+    this.authStore.dispatch(new auth.ReadLocalAuthData());
+  }
+
+  deleteLocalData() {
+    this.storage.remove('auth');
   }
 
   getErrors() {

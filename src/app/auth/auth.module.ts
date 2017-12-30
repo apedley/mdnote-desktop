@@ -6,6 +6,8 @@ import { AuthComponent } from './containers/auth/auth.component';
 import { RouterModule } from '@angular/router';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { UnauthGuard } from './unauth.guard';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { AuthService } from './auth.service';
     AuthFormComponent
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard,
+    UnauthGuard
   ]
 })
 export class AuthModule { }
