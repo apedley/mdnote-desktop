@@ -7,11 +7,11 @@ import { Category, Note } from '../../note.model';
 
 import * as fromCategories from '../../store/categories-reducer'
 @Component({
-  selector: 'app-notes-view',
-  templateUrl: './notes-view.component.html',
-  styleUrls: ['./notes-view.component.scss']
+  selector: 'app-notes-list-view',
+  templateUrl: './notes-list-view.component.html',
+  styleUrls: ['./notes-list-view.component.scss']
 })
-export class NotesViewComponent implements OnInit {
+export class NotesListViewComponent implements OnInit {
   categories: Observable<Category[]>;
   collapsedCategories: Observable<any>;
   selectedNote: Observable<Note>;
@@ -21,13 +21,22 @@ export class NotesViewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.notes.loadNotesAndCategories();
+    // this.notes.loadNotesAndCategories();
     this.categories = this.notes.getCategoriesWithNotes();
     this.collapsedCategories = this.notes.getCollapsedCategories();
+
+    this.selectedNote = this.notes.getSelectedNote();
+    this.selectedNote.subscribe(n => {
+      console.dir(n);
+    })
   }
 
   toggleCategory(id) {
     this.notes.toggleCategory(id);
+  }
+
+  selectNote(id) {
+    this.notes.selectNote(id);
   }
 
 }

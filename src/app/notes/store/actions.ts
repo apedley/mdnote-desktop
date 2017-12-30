@@ -10,6 +10,7 @@ export const FETCH_CATEGORIES_SUCCESS = '[Categories] Fetch Categories Success';
 export const FETCH_CATEGORIES_FAILURE = '[Categories] Fetch Categories Failure';
 
 export const FETCH_NOTES_AND_CATEGORIES = '[Notes] Fetch Notes And Categories';
+export const REFETCH_NOTES_AND_CATEGORIES = '[Notes] Reetch Notes And Categories';
 export const FETCH_NOTES_AND_CATEGORIES_SUCCESS = '[Notes] Fetch Notes And Categories Success';
 export const FETCH_NOTES_AND_CATEGORIES_FAILURE = '[Notes] Fetch Notes And Categories Failure';
 
@@ -51,6 +52,11 @@ export class FetchCategoriesFailure implements Action {
 
 export class FetchNotesAndCategories implements Action {
   readonly type = FETCH_NOTES_AND_CATEGORIES;
+}
+
+
+export class RefetchNotesAndCategories implements Action {
+  readonly type = REFETCH_NOTES_AND_CATEGORIES;
 }
 
 export class FetchNotesAndCategoriesSuccess implements Action {
@@ -96,6 +102,7 @@ export type actions =
   FetchNotesAndCategories |
   FetchNotesAndCategoriesSuccess |
   FetchNotesAndCategoriesFailure |
+  RefetchNotesAndCategories |
   SelectCategory |
   ToggleCategory |
   SelectNote;

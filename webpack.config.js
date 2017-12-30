@@ -64,6 +64,7 @@ const isProd = (process.env.NODE_ENV === 'production');
 const styles = [
   "./node_modules/bootstrap/dist/css/bootstrap.min.css",
   "./node_modules/font-awesome/css/font-awesome.min.css",
+  "./node_modules/prismjs/themes/prism-okaidia.css",
   "./src/styles.scss"
 ];
 

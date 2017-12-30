@@ -7,6 +7,7 @@ import { of } from 'rxjs/observable/of';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { map, tap, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { ApiService } from '../../core/api.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class NotesEffects {
@@ -28,7 +29,7 @@ export class NotesEffects {
 
 
   @Effect()
-  fetchNotesAndCategories: Observable<Action> = this.actions.ofType(notes.FETCH_NOTES_AND_CATEGORIES).pipe(
+  fetchNotesAndCategories: Observable<Action> = this.actions.ofType(notes.FETCH_NOTES_AND_CATEGORIES, notes.REFETCH_NOTES_AND_CATEGORIES).pipe(
     switchMap((action) => {
       return this.api.getNotesAndCategories();
     }),
@@ -45,6 +46,13 @@ export class NotesEffects {
     catchError(error => of(new notes.FetchNotesAndCategoriesFailure(error)))
   );
 
-  constructor(private actions: Actions, private api: ApiService) {}
+  @Effect({dispatch: false})
+  selectNote = this.actions.ofType<notes.SelectNote>(notes.SELECT_NOTE).pipe(
+    map((action) => {
+      this.router.navigate(['/notes', action.payload])
+    })
+  );
+
+  constructor(private actions: Actions, private api: ApiService, private router: Router) {}
 }
 
