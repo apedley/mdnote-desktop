@@ -26,9 +26,6 @@ export class NotesListViewComponent implements OnInit {
     this.collapsedCategories = this.notes.getCollapsedCategories();
 
     this.selectedNote = this.notes.getSelectedNote();
-    this.selectedNote.subscribe(n => {
-      console.dir(n);
-    })
   }
 
   toggleCategory(id) {

@@ -21,6 +21,7 @@ import { Note } from '../../note.model';
 })
 export class NoteRenderComponent implements OnInit {
   @Input() note: Note;
+
   constructor() {}
 
   ngOnInit() {

@@ -64,12 +64,16 @@ const isProd = (process.env.NODE_ENV === 'production');
 const styles = [
   "./node_modules/bootstrap/dist/css/bootstrap.min.css",
   "./node_modules/font-awesome/css/font-awesome.min.css",
-  "./node_modules/prismjs/themes/prism-okaidia.css",
+  "./node_modules/prismjs/themes/prism-tomorrow.css",
   "./src/styles.scss"
 ];
 
 //we add all our external scripts we want to load externally, like inserting in our index.html --> like as if it's .angular-cli.json
 const scripts = [
+  "./node_modules/marked/lib/marked.js",
+  "./node_modules/prismjs/prism.js",
+  "./node_modules/prismjs/components/prism-typescript.min.js"
+  // "./node_modules/prismjs/components/prism-javascript.min.js"
 ];
 
 //create file path for each , so we use for our excludes and includes where needed
