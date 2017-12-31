@@ -10,12 +10,12 @@ const routes: Routes = [
   {
     path: 'signin',
     component: AuthComponent,
-    canActivate: [UnauthGuard]
+    // canActivate: [UnauthGuard]
   },
   {
     path: 'signup',
     component: AuthComponent,
-    canActivate: [UnauthGuard]
+    // canActivate: [UnauthGuard]
   },
   {
     path: 'signout',

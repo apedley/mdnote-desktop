@@ -14,11 +14,12 @@ export class UnauthGuard implements CanActivate {
   canActivate() {
     return this.authService.getAuthenticated().pipe(
       tap(authStatus => {
+        debugger;
         if (authStatus) {
           this.router.navigate(['/']);
           return false;
         } else {
-          this.authService.loadLocalData();
+          // this.authService.loadLocalData();
           return true;
         }
       })

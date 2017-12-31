@@ -46,9 +46,12 @@ export class AuthEffects {
   @Effect()
   readLocalAuthData = this.actions.ofType(auth.READ_LOCAL_AUTH_DATA).pipe(
     map((action: auth.LoadLocalAuthData) => {
+
       const results = this.authService.getLocalData();
 
       if (!results) {
+        // debugger;
+        this.router.navigate(['/signin']);
         return {
           type: auth.READ_LOCAL_AUTH_DATA_FAILURE
         }
@@ -58,6 +61,13 @@ export class AuthEffects {
         type: auth.LOAD_LOCAL_AUTH_DATA,
         payload: results
       };
+    })
+  );
+
+  @Effect({ dispatch: false })
+  readLocalAuthDataFailure = this.actions.ofType(auth.READ_LOCAL_AUTH_DATA_FAILURE).pipe(
+    tap((action: auth.ReadLocalAuthDataFailure) => {
+      this.router.navigate(['/signin']);
     })
   );
 

@@ -12,7 +12,7 @@ export const SIGNIN_FAILURE = '[Auth] Signin Failure';
 export const SIGNOUT = '[Auth] Signout';
 
 export const READ_LOCAL_AUTH_DATA = '[Auth] Read Local Auth Data';
-export const READ_LOCAL_AUTH_DATA_FAILURE = '[Auth] Read Local Auth Data Failue';
+export const READ_LOCAL_AUTH_DATA_FAILURE = '[Auth] Read Local Auth Data Failure';
 export const LOAD_LOCAL_AUTH_DATA = '[Auth] Load Local Auth Data';
 
 export class Signup implements Action {
@@ -58,6 +58,10 @@ export class ReadLocalAuthData implements Action {
   readonly type = READ_LOCAL_AUTH_DATA;
 }
 
+export class ReadLocalAuthDataFailure implements Action {
+  readonly type = READ_LOCAL_AUTH_DATA_FAILURE;
+}
+
 export class LoadLocalAuthData implements Action {
   readonly type = LOAD_LOCAL_AUTH_DATA;
 
@@ -73,4 +77,5 @@ export type Actions =
   | SigninFailure
   | Signout
   | LoadLocalAuthData
-  | ReadLocalAuthData;
+  | ReadLocalAuthData
+  | ReadLocalAuthDataFailure;
