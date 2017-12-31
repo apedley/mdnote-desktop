@@ -91,6 +91,11 @@ export class NotesService implements OnDestroy {
     return this.notesStore.dispatch(new notes.CreateNote(sanitizedNote));
   }
 
+  editNote(id: number, note: Note) {
+    const sanitizedNote = this._fixCategoryId(note);
+    this.notesStore.dispatch(new notes.UpdateNote(id, note));
+  }
+
   private _fixCategoryId(note: Note) {
     if (note.categoryId === '0' || note.categoryId === 0) {
       note.categoryId = null;

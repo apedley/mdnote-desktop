@@ -10,6 +10,7 @@ export class ToolbarComponent implements OnInit {
   @Input() title: string;
   @Input() user: User;
   @Output() backClicked = new EventEmitter<void>();
+  @Output() reloadClicked = new EventEmitter<void>();
 
   constructor() {}
 
@@ -18,6 +19,10 @@ export class ToolbarComponent implements OnInit {
 
   onBackClicked() {
     this.backClicked.emit();
+  }
+
+  onReloadClicked(event) {
+    this.reloadClicked.emit();
   }
 
 }

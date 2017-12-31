@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   public user: Observable<User>;
   public authenticated: Observable<boolean>;
 
-  constructor(private auth: AuthService, private routerStore: Store<fromRouter.RouterReducerState<fromRoot.RouterStateUrl>>) {
+  constructor(private auth: AuthService, private routerStore: Store<fromRouter.RouterReducerState<fromRoot.RouterStateUrl>>, private rootStore: Store<fromRoot.State>) {
     this.user = this.auth.getUser();
     this.authenticated = this.auth.getAuthenticated();
 
@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
 
   backClicked(event) {
     this.routerStore.dispatch(new routerActions.Back());
+  }
+
+  reloadClicked(event) {
+    console.log('reload');
   }
 
 }

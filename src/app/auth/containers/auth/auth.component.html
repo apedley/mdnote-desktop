@@ -1,19 +1,19 @@
 <div>
   <div class="card text-center first-card">
     <div class="card-body">
-      <h4 class="card-title">{{ mode === "signin" ? "Sign In" : "Sign Up" }}</h4>
+      <h4 class="card-title">{{ (url | async) === "/signin" ? "Sign In" : "Sign Up" }}</h4>
       <div class="card-text">
 
-        <app-auth-form [mode]="mode" [formLoading]="formLoading | async" (submitted)="formSubmitted($event)"></app-auth-form>
+        <app-auth-form [mode]="url | async" [formLoading]="formLoading | async" (submitted)="formSubmitted($event)"></app-auth-form>
       </div>
     </div>
   </div>
 
-  <div class="card text-center" *ngIf="mode === 'signin'">
+  <div class="card text-center" *ngIf="(url | async) === '/signin'">
     Need an account? <a [routerLink]="['/signup']">Click here to sign up.</a>
   </div>
 
-  <div class="card text-center" *ngIf="mode === 'signup'">
+  <div class="card text-center" *ngIf="(url | async) === '/signup'">
     Already signed up? <a [routerLink]="['/signin']">Click here to sign in.</a>
   </div>
 </div>

@@ -74,6 +74,16 @@ export class ApiService {
     });
   }
 
+  updateNote(id: number, note: Note) {
+    const url = `${environment.apiBaseUrl}/notes/${id}`;
+    const authHeader = `bearer ${this.authToken}`;
+    const cleanNoteData = this._removeInvalidKeys(note);
+
+    return this.httpClient.patch<Note>(url, cleanNoteData, {
+      headers: new HttpHeaders().set('Authorization', authHeader)
+    });
+  }
+
   private _removeInvalidKeys(dataObject: any) {
     return Object.keys(dataObject).reduce((prev, key) => {
       if (dataObject[key] && dataObject[key] !== 'null') {

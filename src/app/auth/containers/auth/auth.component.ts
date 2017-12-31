@@ -4,6 +4,11 @@ import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from '../../../reducers';
 import { AuthService } from '../../auth.service';
+import { takeLast, take, tap } from 'rxjs/operators';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subscription } from "rxjs/Subscription";
+import { Authenticate } from "../../user.model";
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -24,27 +29,20 @@ export class AuthComponent implements OnInit {
       if (url.indexOf('signout') > 0) {
         this.authService.signout();
       }
-      // console.log('url: ', url);
-      if (url.indexOf('signin') > 0) {
-        this.mode = 'signin';
-      } else if (url.indexOf('signup') > 0) {
-        this.mode = 'signup';
-      } else {
-        this.mode = '';
-      }
+
     });
   }
 
-  formSubmitted(data) {
-    if (this.mode === 'signin') {
-      this.authService.signin(data);
-    }
-    if (this.mode === 'signup') {
-      this.authService.signup(data);
+  formSubmitted(data: {mode: string, formValue: Authenticate}) {
+    if (data.mode === '/signup') {
+      this.authService.signup(data.formValue);
+    } else if (data.mode === '/signin') {
+      this.authService.signin(data.formValue);
     }
   }
 
   ngOnInit() {
   }
+
 
 }

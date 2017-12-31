@@ -10,7 +10,7 @@ import { Authenticate } from '../../user.model';
 export class AuthFormComponent implements OnInit {
   @Input() mode: string;
   @Input() formLoading: boolean;
-  @Output() submitted = new EventEmitter<Authenticate>();
+  @Output() submitted = new EventEmitter<{mode: string, formValue: Authenticate}>();
 
   public authForm: FormGroup;
 
@@ -25,7 +25,10 @@ export class AuthFormComponent implements OnInit {
 
   submitAuthForm() {
     if (this.authForm.valid) {
-      this.submitted.emit(this.authForm.value)
+      this.submitted.emit({
+        mode: this.mode,
+        formValue: this.authForm.value
+      })
     }
   }
 

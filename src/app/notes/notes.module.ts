@@ -9,7 +9,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { CoreModule } from '../core/core.module';
 import { ComposeNoteComponent } from './containers/compose-note/compose-note.component';
-import { reducers } from './store/reducers';
+import { reducers, metaReducers } from './store/reducers';
 import { NotesService } from './notes.service';
 import { NotesEffects } from './store/effects';
 import { CategoryListItemComponent } from './components/category-list/category-list-item.component';
@@ -31,10 +31,11 @@ import { DirectivesModule } from '../shared/directives/index';
     MarkdownModule.forRoot(),
     RouterModule.forChild([
       { path: 'new', pathMatch: 'full', component: ComposeNoteComponent},
-      { path: 'edit/:id', pathMatch: 'full', component: ComposeNoteComponent },
-      { path: ':id', component: NoteDetailViewComponent },
+      { path: 'edit/:noteId', pathMatch: 'full', component: ComposeNoteComponent },
+      { path: ':noteId', component: NoteDetailViewComponent },
       { path: '', pathMatch: 'full', component: NotesListViewComponent}
     ]),
+    // StoreModule.forFeature('notes', reducers, { metaReducers: metaReducers}),
     StoreModule.forFeature('notes', reducers),
     EffectsModule.forFeature([ NotesEffects ]),
     PipesModule,

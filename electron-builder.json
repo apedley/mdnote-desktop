@@ -1,4 +1,5 @@
 {
+  "appid": "com.andrewpedley.mdnote.app",
   "productName": "mdnote",
   "directories": {
     "app": "dist",

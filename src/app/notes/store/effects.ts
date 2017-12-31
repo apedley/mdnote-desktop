@@ -78,6 +78,22 @@ export class NotesEffects {
       }
     })
   )
+
+  @Effect()
+  updateNote = this.actions.ofType(notes.UPDATE_NOTE).pipe(
+    switchMap((action: notes.UpdateNote) => {
+      return this.api.updateNote(action.id, action.payload);
+    }),
+    map((note: Note) => {
+      this.router.navigate(['/notes', note.id]);
+      return {
+        type: notes.UPDATE_NOTE_SUCCESS,
+        payload: { note, id: note.id }
+      }
+    }),
+    catchError(error => of(new notes.UpdateNoteFailure([error])))
+  )
+
   constructor(private actions: Actions, private api: ApiService, private router: Router) {}
 }
 

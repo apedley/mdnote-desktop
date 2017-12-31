@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import {  } from '@ngrx/entity';
 import { Note, Category } from '../note.model';
 
 export const FETCH_NOTES = '[Notes] Fetch Notes';
@@ -23,10 +24,14 @@ export const CREATE_NOTE = '[Notes] Create Note';
 export const CREATE_NOTE_SUCCESS = '[Notes] Create Note Success';
 export const CREATE_NOTE_FAILURE = '[Notes] Create Note Failure';
 
+export const UPDATE_NOTE = '[Notes] Update Note';
+export const UPDATE_NOTE_SUCCESS = '[Notes] Update Note Success';
+export const UPDATE_NOTE_FAILURE = '[Notes] Update Note Failue';
 
 export const CREATE_CATEGORY = '[Categories] Create Category';
 export const CREATE_CATEGORY_SUCCESS = '[Categories] Create Category Success';
 export const CREATE_CATEGORY_FAILURE = '[Categories] Create Category Failure';
+
 
 
 export class FetchNotes implements Action {
@@ -120,6 +125,25 @@ export class CreateNoteFailure implements Action {
   constructor(public errors: string[]) {}
 }
 
+
+export class UpdateNote implements Action {
+  readonly type = UPDATE_NOTE;
+
+  constructor(public id: number, public payload: Note) {}
+}
+
+export class UpdateNoteSuccess implements Action {
+  readonly type = UPDATE_NOTE_SUCCESS;
+
+  constructor(public payload: { note: Note, id: number }) {}
+}
+
+export class UpdateNoteFailure implements Action {
+  readonly type = UPDATE_NOTE_FAILURE;
+
+  constructor(public errors: string[]) {}
+}
+
 export class CreateCategory implements Action {
   readonly type = CREATE_CATEGORY;
 
@@ -155,6 +179,9 @@ export type actions =
   CreateNote |
   CreateNoteSuccess |
   CreateNoteFailure |
+  UpdateNote |
+  UpdateNoteSuccess |
+  UpdateNoteFailure |
   CreateCategory |
   CreateCategorySuccess |
   CreateCategoryFailure;

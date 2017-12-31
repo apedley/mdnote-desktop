@@ -25,6 +25,8 @@ export class EditNoteFormComponent implements OnInit {
   noteForm: FormGroup;
   formLoading = false;
 
+  existingNoteId: number;
+
   constructor(public fb: FormBuilder) {}
 
   ngOnInit() {
@@ -39,16 +41,27 @@ export class EditNoteFormComponent implements OnInit {
     }
     this.initialData.subscribe((note) => {
       if (!note) { return; }
+
+
+      let id = note.id;
+      if (typeof id === 'string') {
+        id = parseInt(id, 10);
+      }
+
+      this.existingNoteId = id;
       this.noteForm.controls['title'].setValue(note.title);
       this.noteForm.controls['body'].setValue(note.body);
+      this.bodyChanged.emit(note.body);
       this.noteForm.controls['categoryId'].setValue(note.categoryId);
     });
-
   }
 
   onFormSubmitted() {
     this.formLoading = true;
-    this.formSubmitted.emit(this.noteForm.value);
+    this.formSubmitted.emit({
+      existingNoteId: this.existingNoteId,
+      formValue: this.noteForm.value
+    });
   }
 
   onBodyChanged(body) {

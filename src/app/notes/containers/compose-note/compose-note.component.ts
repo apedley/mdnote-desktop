@@ -11,13 +11,15 @@ import { Category, Note } from '../../note.model';
   styleUrls: ['./compose-note.component.scss']
 })
 export class ComposeNoteComponent implements OnInit {
-
+  note: Observable<Note>;
   categories: Observable<Category[]>;
+
   body = '';
 
   constructor(private notes: NotesService) {}
 
   ngOnInit() {
+    this.note = this.notes.getRouteNote();
     this.categories = this.notes.getCategories();
   }
 
@@ -25,8 +27,12 @@ export class ComposeNoteComponent implements OnInit {
     this.body = value;
   }
 
-  formSubmitted(value) {
-    this.notes.createNote(value);
+  formSubmitted({ existingNoteId, formValue}) {
+    if (!existingNoteId) {
+      return this.notes.createNote(formValue);
+    }
+
+    return this.notes.editNote(existingNoteId, formValue);
   }
 
 }

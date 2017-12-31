@@ -1,10 +1,14 @@
+
+import { ActionReducerMap, createFeatureSelector, createSelector, ActionReducer, MetaReducer } from '@ngrx/store';
+import { Params, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+import { getErrors } from './auth/store/reducer';
+
 import * as fromRouter from '@ngrx/router-store';
 import * as fromAuth from './auth/store/reducer';
 import * as fromUi from './core/store/ui-reducer';
-
-import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-import { Params, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { getErrors } from './auth/store/reducer';
+import * as fromStoreMeta from './store-meta-reducer';
 
 export interface RouterStateUrl {
   url: string;
@@ -40,6 +44,7 @@ export const reducers: ActionReducerMap<State> = {
   routerReducer: fromRouter.routerReducer
 };
 
+export const metaReducers: MetaReducer<any>[] = [fromStoreMeta.storeMetaReducer];
 
 export const getRouterState = createFeatureSelector<fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
 

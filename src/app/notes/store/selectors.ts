@@ -106,6 +106,6 @@ export const selectRouteNote = createSelector(
   selectNoteEntities,
   fromRoot.getRouterState,
   (entities, router) => {
-    return router.state && entities[router.state.params.id];
+    return router.state && router.state.params && entities[router.state.params.noteId];
   }
 );

@@ -58,7 +58,9 @@
         "electron-settings": "^3.1.4",
         "enhanced-resolve": "3.3.0",
         "font-awesome": "^4.7.0",
+        "ngrx-store-localstorage": "^0.3.0",
         "ngx-markdown": "^1.5.0",
+        "popper.js": "^1.12.9",
         "prismjs": "^1.9.0",
         "rxjs": "5.5.2",
         "zone.js": "0.8.17"
@@ -82,6 +84,7 @@
         "cssnano": "3.10.0",
         "electron": "1.7.8",
         "electron-builder": "19.45.4",
+        "electron-packager": "^10.1.0",
         "electron-reload": "1.2.1",
         "electron-toolkit": "^1.0.24",
         "exports-loader": "0.6.4",

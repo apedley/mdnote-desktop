@@ -1,7 +1,8 @@
-<app-layout [title]="'New Note'">
+<app-layout [title]="(note | async) ? 'Edit Note: ' + (note |async).title : 'New Note'">
   <div class="edit-view">
   <app-edit-note-form
     [categories]="categories | async"
+    [initialData]="note"
     (formSubmitted)="formSubmitted($event)"
     (bodyChanged)="bodyChanged($event)">
   </app-edit-note-form>

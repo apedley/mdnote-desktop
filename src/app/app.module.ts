@@ -43,6 +43,7 @@ import { RouterEffects } from './core/store/router-effects';
     StoreRouterConnectingModule,
     EffectsModule.forRoot([AuthEffects, RouterEffects]),
     StoreModule.forRoot(fromRootStore.reducers),
+    // StoreModule.forRoot(fromRootStore.reducers, {metaReducers: fromRootStore.metaReducers}),
     !environment.production
     ? StoreDevtoolsModule.instrument()
     : []

@@ -38,6 +38,12 @@ export function reducer(state = initialState, action: actions.actions) {
         ...adapter.addOne(action.payload, state)
       }
     }
+    case actions.UPDATE_NOTE_SUCCESS: {
+      return {
+        ...state,
+        ...adapter.updateOne({ id: action.payload.id, changes: action.payload.note }, state)
+      }
+    }
     default: {
       return state;
     }
