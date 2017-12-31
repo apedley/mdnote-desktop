@@ -1,0 +1,36 @@
+@import '../../../../theme.scss';
+
+
+table {
+  margin-bottom: 0;
+  table-layout: fixed
+}
+
+tr {
+  cursor: pointer;
+}
+
+.table-hover tbody tr:hover {
+  background-color: $hoverBackgroundColorLight;
+}
+td {
+  border-top: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+td.title {
+  width: 25%;
+}
+
+// td.body {
+  // width: 50%;
+  // overflow: hidden
+// }
+td.updated-at {
+  width: 10%;
+  text-align: right
+}
+
+

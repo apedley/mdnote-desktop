@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-body">
+
+    <h5 class="card-title" (click)="onCategoryClicked()">
+      <div class="float-right category-actions">
+        <button class="btn btn-secondary btn-sm" [routerLink]="['/notes', 'new']" [queryParams]="{categoryId: category.id}">
+          <i class="fa fa-plus"></i>
+        </button>
+        <button *ngIf="category.name !== 'Uncategorized'"
+          class="btn btn-secondary btn-sm"
+          app-click-stop-propagation
+          (click)="onCategoryEditClicked(category.id)" >
+          <i class="fa fa-pencil"></i>
+        </button>
+        <button *ngIf="category.name !== 'Uncategorized'"
+          class="btn btn-secondary btn-sm"
+          app-click-stop-propagation
+          (click)="onCategoryDeleteClicked(category.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+
+      <i class="fa"
+      [class.fa-caret-down]="!collapsed && category.notes.length > 0"
+      [class.fa-caret-right]="collapsed || category.notes.length < 1"></i>
+      {{ category.name }}
+      <span class="note-count">{{ category.notes.length > 0 ? category.notes.length : 'Empty' }}</span>
+    </h5>
+
+    <div class="card-text" *ngIf="!collapsed">
+
+      <app-note-list *ngIf="category.notes.length > 0"
+        [notes]="category.notes"
+        (noteClicked)="onNoteClicked($event)"
+      ></app-note-list>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,6 @@ import { reducers } from './store/reducers';
 import { NotesService } from './notes.service';
 import { NotesEffects } from './store/effects';
 import { CategoryListItemComponent } from './components/category-list/category-list-item.component';
-import { CategoryListComponent } from './components/category-list/category-list.component';
 import { NotesListViewComponent } from './containers/notes-list-view/notes-list-view.component';
 import { NoteListComponent } from './components/note-list/note-list.component';
 import { NoteDetailViewComponent } from './containers/note-detail-view/note-detail-view.component';
@@ -22,6 +21,7 @@ import { EditNoteFormComponent } from './components/note-form/edit-note-form.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotePreviewComponent } from './components/note-preview/note-preview.component';
 import { PipesModule } from '../shared/pipes/index';
+import { DirectivesModule } from '../shared/directives/index';
 
 @NgModule({
   imports: [
@@ -36,11 +36,11 @@ import { PipesModule } from '../shared/pipes/index';
     ]),
     StoreModule.forFeature('notes', reducers),
     EffectsModule.forFeature([ NotesEffects ]),
-    PipesModule
+    PipesModule,
+    DirectivesModule
   ],
   declarations: [
     CreateNoteComponent,
-    CategoryListComponent,
     CategoryListItemComponent,
     NotesListViewComponent,
     NoteListComponent,

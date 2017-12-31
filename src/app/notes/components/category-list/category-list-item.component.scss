@@ -1,0 +1,51 @@
+@import '../../../../theme.scss';
+
+.card {
+  border: 0;
+  margin: 1em .5em;
+}
+
+.card-body {
+  padding: 0;
+}
+
+h5.card-title {
+  cursor: pointer;
+  font-size: 1em;
+  padding-bottom: .5em;
+  font-weight: bold;
+  border-bottom: 1px solid $primaryColor;
+  color: $primaryColor;
+}
+
+
+.category-actions button {
+  padding: 0 .5em;
+  margin-left: 1em;
+  background: white;
+  color: $primaryColor;
+  line-height: 1.4em;
+}
+
+.category-actions button:hover {
+  background: $hoverBackgroundColorDark;
+  color: white;
+}
+.note-count {
+  color: $subColor;
+  font-size: .9rem;
+  line-height: 1rem;
+  font-weight: normal;
+  margin-left: .5rem;
+}
+
+.card-text {
+  font-size: .85rem;
+}
+
+// .empty {
+//   text-align: center;
+//   color: $subColor;
+//   font-weight: bold;
+//   font-size: .9em;
+// }

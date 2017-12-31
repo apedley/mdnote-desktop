@@ -12,18 +12,18 @@
           </a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link active" (click)="onBackClicked($event)">
+          <a class="nav-link active toolbar-link" (click)="onBackClicked($event)">
             <i class="fa fa-chevron-left"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/notes']">
+          <a class="nav-link toolbar-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/notes']">
             <i class="fa fa-book"></i>
 
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/notes', 'new']">
+          <a class="nav-link toolbar-link" [routerLinkActive]="['active']" [routerLink]="['/notes', 'new']">
             <i class="fa fa-plus"></i>
           </a>
         </li>

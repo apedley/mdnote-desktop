@@ -1,0 +1,15 @@
+<table class="table table-hover table-sm">
+    <tbody>
+      <tr class="note-row" *ngFor="let note of notes" (click)="onNoteClicked(note.id)">
+        <td class="title">{{ note.title }}</td>
+        <!-- <td class="title">{{ note.title | appTruncateEllipsis:28 }}</td> -->
+        <!-- <td class="body">{{ note.body | appTruncateEllipsis:65 }}</td> -->
+        <td class="body">{{ note.body }}</td>
+        <td class="updated-at"
+          [ngbTooltip]="'Last updated at ' + (note.updated_at | date:'shortTime')"
+          container="body">
+          {{ note.updated_at | date:'shortDate' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>

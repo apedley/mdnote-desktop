@@ -1,8 +1,20 @@
-<app-layout [title]="'Categories Categories Categories Categories Categories Categories Categories Categories '">
-  <app-category-list
+<app-layout [title]="'Categories'">
+  <!-- <app-category-list
     [categories]="categories | async"
     [categoriesCollapsed]="collapsedCategories | async"
     (categoryClicked)="toggleCategory($event)"
     (noteClicked)="selectNote($event)"
-  ></app-category-list>
+  ></app-category-list> -->
+
+  <app-category-list-item
+    *ngFor="let category of (categories | async)"
+    [category]="category"
+    [collapsed]="(collapsedCategories | async)[category.id] === true"
+    (categoryClicked)="toggleCategory($event)"
+    (noteClicked)="selectNote($event)"
+    (categoryEditClicked)="editCategory($event)"
+    (categoryDeleteClicked)="displayDeleteCategoryConfirmation($event)"
+  >
+
+  </app-category-list-item>
 </app-layout>

@@ -36,4 +36,12 @@ export class NotesListViewComponent implements OnInit {
     this.notes.selectNote(id);
   }
 
+  displayDeleteCategoryConfirmation(id) {
+    console.log('delete? ' + id);
+  }
+
+  editCategory(id) {
+    console.log('edit: ' + id);
+  }
+
 }
