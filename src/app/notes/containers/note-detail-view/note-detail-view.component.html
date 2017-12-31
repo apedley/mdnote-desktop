@@ -1,4 +1,4 @@
-<app-layout>
-  <app-note-render *ngIf="selectedNote | async"
-  [note]="selectedNote | async"></app-note-render>
+<app-layout [title]="(selectedNote | async).title">
+  <app-note-show *ngIf="selectedNote | async"
+  [note]="selectedNote | async"></app-note-show>
 </app-layout>

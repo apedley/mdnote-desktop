@@ -1,3 +1,10 @@
-<app-layout>
-  new note
+<app-layout [title]="'New Note'">
+  <div class="edit-view">
+  <app-edit-note-form
+    [categories]="categories | async"
+    (formSubmitted)="formSubmitted($event)"
+    (bodyChanged)="bodyChanged($event)">
+  </app-edit-note-form>
+  <app-note-preview [body]="body"></app-note-preview>
+  </div>
 </app-layout>

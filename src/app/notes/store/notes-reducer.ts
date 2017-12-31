@@ -32,6 +32,12 @@ export function reducer(state = initialState, action: actions.actions) {
         selectedNoteId: action.payload
       }
     }
+    case actions.CREATE_NOTE_SUCCESS: {
+      return {
+        ...state,
+        ...adapter.addOne(action.payload, state)
+      }
+    }
     default: {
       return state;
     }

@@ -14,7 +14,11 @@ import { Note } from '../../note.model';
       </tbody>
     </table>
   `,
-  styles: [``]
+  styles: [`
+  td {
+    border-top: 0;
+  }
+  `]
 })
 export class NoteListComponent implements OnInit {
   @Input() notes: Note[];

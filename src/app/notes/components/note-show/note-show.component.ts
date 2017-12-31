@@ -9,7 +9,7 @@ import { Note } from '../../note.model';
 //   </div>
 // </div>
 @Component({
-  selector: 'app-note-render',
+  selector: 'app-note-show',
   template: `
   <div>
     <h3>{{ note.title }}</h3>
@@ -19,7 +19,7 @@ import { Note } from '../../note.model';
   `,
   styles: [``]
 })
-export class NoteRenderComponent implements OnInit {
+export class NoteShowComponent implements OnInit {
   @Input() note: Note;
 
   constructor() {}

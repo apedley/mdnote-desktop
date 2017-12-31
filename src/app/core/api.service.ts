@@ -62,4 +62,25 @@ export class ApiService {
       }
     });
   }
+
+  createNote(note: Note) {
+    const url = `${environment.apiBaseUrl}/notes`;
+    const authHeader = `bearer ${this.authToken}`;
+
+    const cleanNoteData = this._removeInvalidKeys(note);
+
+    return this.httpClient.post<Note>(url, cleanNoteData, {
+      headers: new HttpHeaders().set('Authorization', authHeader)
+    });
+  }
+
+  private _removeInvalidKeys(dataObject: any) {
+    return Object.keys(dataObject).reduce((prev, key) => {
+      if (dataObject[key] && dataObject[key] !== 'null') {
+        prev[key] = dataObject[key];
+      }
+      return prev;
+    }, {});
+  }
+
 }

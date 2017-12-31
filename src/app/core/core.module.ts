@@ -8,12 +8,15 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { PipesModule } from '../shared/pipes/index';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    PipesModule
   ],
   exports: [
     HeaderComponent,
@@ -24,7 +27,8 @@ import { StorageService } from './storage.service';
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    HomeViewComponent
+    HomeViewComponent,
+    ToolbarComponent
   ],
   providers: [
     ElectronService,

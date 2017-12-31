@@ -19,6 +19,16 @@ export const SELECT_NOTE = '[Notes] Select';
 
 export const TOGGLE_CATEGORY = '[Categories] Toggle';
 
+export const CREATE_NOTE = '[Notes] Create Note';
+export const CREATE_NOTE_SUCCESS = '[Notes] Create Note Success';
+export const CREATE_NOTE_FAILURE = '[Notes] Create Note Failure';
+
+
+export const CREATE_CATEGORY = '[Categories] Create Category';
+export const CREATE_CATEGORY_SUCCESS = '[Categories] Create Category Success';
+export const CREATE_CATEGORY_FAILURE = '[Categories] Create Category Failure';
+
+
 export class FetchNotes implements Action {
   readonly type = FETCH_NOTES;
 }
@@ -92,6 +102,42 @@ export class SelectNote implements Action {
   constructor(public payload: string) {}
 }
 
+export class CreateNote implements Action {
+  readonly type = CREATE_NOTE;
+
+  constructor(public payload: Note) {}
+}
+
+export class CreateNoteSuccess implements Action {
+  readonly type = CREATE_NOTE_SUCCESS;
+
+  constructor(public payload: Note) {}
+}
+
+export class CreateNoteFailure implements Action {
+  readonly type = CREATE_NOTE_FAILURE;
+
+  constructor(public errors: string[]) {}
+}
+
+export class CreateCategory implements Action {
+  readonly type = CREATE_CATEGORY;
+
+  constructor(public payload: Category) {}
+}
+
+export class CreateCategorySuccess implements Action {
+  readonly type = CREATE_CATEGORY_SUCCESS;
+
+  constructor(public payload: Category) {}
+}
+
+export class CreateCategoryFailure implements Action {
+  readonly type = CREATE_CATEGORY_FAILURE;
+
+  constructor(public errors: string[]) {}
+}
+
 export type actions =
   FetchNotes |
   FetchNotesSuccess |
@@ -105,4 +151,10 @@ export type actions =
   RefetchNotesAndCategories |
   SelectCategory |
   ToggleCategory |
-  SelectNote;
+  SelectNote |
+  CreateNote |
+  CreateNoteSuccess |
+  CreateNoteFailure |
+  CreateCategory |
+  CreateCategorySuccess |
+  CreateCategoryFailure;

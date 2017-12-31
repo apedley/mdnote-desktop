@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+
+import { NotesService } from '../../notes.service';
+import { Category, Note } from '../../note.model';
 
 @Component({
   selector: 'app-create-note',
@@ -8,9 +12,21 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class CreateNoteComponent implements OnInit {
 
-  constructor() {}
+  categories: Observable<Category[]>;
+  body = '';
+
+  constructor(private notes: NotesService) {}
 
   ngOnInit() {
+    this.categories = this.notes.getCategories();
+  }
+
+  bodyChanged(value) {
+    this.body = value;
+  }
+
+  formSubmitted(value) {
+    this.notes.createNote(value);
   }
 
 }

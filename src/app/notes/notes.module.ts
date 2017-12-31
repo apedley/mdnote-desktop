@@ -17,12 +17,17 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { NotesListViewComponent } from './containers/notes-list-view/notes-list-view.component';
 import { NoteListComponent } from './components/note-list/note-list.component';
 import { NoteDetailViewComponent } from './containers/note-detail-view/note-detail-view.component';
-import { NoteRenderComponent } from './components/note-show/note-render.component';
+import { NoteShowComponent } from './components/note-show/note-show.component';
+import { EditNoteFormComponent } from './components/note-form/edit-note-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NotePreviewComponent } from './components/note-preview/note-preview.component';
+import { PipesModule } from '../shared/pipes/index';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreModule,
+    ReactiveFormsModule,
     MarkdownModule.forRoot(),
     RouterModule.forChild([
       { path: 'new', pathMatch: 'full', component: CreateNoteComponent},
@@ -30,7 +35,8 @@ import { NoteRenderComponent } from './components/note-show/note-render.componen
       { path: '', pathMatch: 'full', component: NotesListViewComponent}
     ]),
     StoreModule.forFeature('notes', reducers),
-    EffectsModule.forFeature([ NotesEffects ])
+    EffectsModule.forFeature([ NotesEffects ]),
+    PipesModule
   ],
   declarations: [
     CreateNoteComponent,
@@ -39,7 +45,9 @@ import { NoteRenderComponent } from './components/note-show/note-render.componen
     NotesListViewComponent,
     NoteListComponent,
     NoteDetailViewComponent,
-    NoteRenderComponent
+    NoteShowComponent,
+    EditNoteFormComponent,
+    NotePreviewComponent
   ],
   providers: [
     NotesService

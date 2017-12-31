@@ -1,7 +1,8 @@
 import * as fromRouter from '@ngrx/router-store';
 import * as fromAuth from './auth/store/reducer';
+import * as fromUi from './core/store/ui-reducer';
 
-import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 import { Params, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { getErrors } from './auth/store/reducer';
 
@@ -28,12 +29,14 @@ export class CustomRouterStateSerializer implements fromRouter.RouterStateSerial
 
 export interface State {
   auth: fromAuth.State;
+  ui: fromUi.State;
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
 
 export const reducers: ActionReducerMap<State> = {
   auth: fromAuth.reducer,
+  ui: fromUi.reducer,
   routerReducer: fromRouter.routerReducer
 };
 
@@ -53,3 +56,7 @@ export const getToken = createSelector(getAuthState, fromAuth.getToken);
 export const getError = createSelector(getAuthState, fromAuth.getErrors);
 export const getLoggedIn = createSelector(getAuthState, fromAuth.getLoggedIn);
 export const getFormLoading = createSelector(getAuthState, fromAuth.getFormLoading);
+
+export const getUiState = createFeatureSelector<fromUi.State>('ui');
+
+export const selectTitle = createSelector(getUiState, fromUi.getTitle);

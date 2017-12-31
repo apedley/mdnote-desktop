@@ -8,6 +8,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 import { map, tap, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { ApiService } from '../../core/api.service';
 import { Router } from '@angular/router';
+import { Note } from '../note.model';
 
 @Injectable()
 export class NotesEffects {
@@ -53,6 +54,30 @@ export class NotesEffects {
     })
   );
 
+  @Effect()
+  createNote = this.actions.ofType(notes.CREATE_NOTE).pipe(
+    switchMap((action: notes.CreateNote) => {
+      return this.api.createNote(action.payload);
+    }),
+    map((note: Note) => {
+      return {
+        type: notes.CREATE_NOTE_SUCCESS,
+        payload: note
+      };
+    }),
+    catchError(error => of(new notes.CreateNoteFailure([error])))
+  )
+
+  @Effect()
+  createNoteSuccess = this.actions.ofType(notes.CREATE_NOTE_SUCCESS).pipe(
+    map((action: notes.CreateNoteSuccess) => {
+      // this.router.navigate(['/notes', action.payload.id])
+      return {
+        type: notes.SELECT_NOTE,
+        payload: action.payload.id
+      }
+    })
+  )
   constructor(private actions: Actions, private api: ApiService, private router: Router) {}
 }
 

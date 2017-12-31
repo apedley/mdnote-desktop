@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -24,6 +25,7 @@ import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthEffects } from './auth/store/effects';
 import * as fromRootStore from './reducers';
+import { RouterEffects } from './core/store/router-effects';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import * as fromRootStore from './reducers';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
@@ -38,7 +41,7 @@ import * as fromRootStore from './reducers';
     CoreModule,
     AuthModule,
     StoreRouterConnectingModule,
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RouterEffects]),
     StoreModule.forRoot(fromRootStore.reducers),
     !environment.production
     ? StoreDevtoolsModule.instrument()

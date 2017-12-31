@@ -1,0 +1,10 @@
+.edit-view {
+  display: flex;
+  justify-content: space-around;
+  font-size: .85rem;
+}
+
+.edit-view * {
+  flex: 1 1 auto;
+  max-width: 48%;
+}

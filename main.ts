@@ -34,7 +34,11 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
-    show: false
+    show: false,
+    resizable: false,
+    webPreferences: {
+      textAreasAreResizable: false
+    }
   });
 
   if (serve) {

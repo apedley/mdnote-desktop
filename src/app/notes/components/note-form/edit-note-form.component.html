@@ -1,0 +1,39 @@
+<form [formGroup]="noteForm" (ngSubmit)="onFormSubmitted()">
+  <div class="form-group">
+    <input formControlName="title" placeholder="Title" id="noteTitle" class="form-control" [class.is-invalid]="!noteForm.controls.title.valid && noteForm.controls.title.touched">
+    <!-- <div class="invalid-feedback" *ngIf="noteForm.controls['title'].hasError('required')">
+      Please enter a title
+    </div> -->
+  </div>
+  <div class="form-group">
+    <textarea
+      formControlName="body"
+      placeholder="Body"
+      id="noteBody"
+      class="form-control"
+      [class.is-invalid]="!noteForm.controls.body.valid && noteForm.controls.body.touched"
+      (ngModelChange)="onBodyChanged($event)"
+    >
+    </textarea>
+    <!-- <div class="invalid-feedback" *ngIf="noteForm.controls['body'].hasError('required')">
+      Please enter a body
+    </div> -->
+  </div>
+  <div class="form-group">
+    <select formControlName="categoryId" class="form-control custom-select custom-select-sm">
+      <option value="0" selected>
+        Uncategorized
+      </option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <div class="buttons">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="noteForm.invalid || formLoading"
+    >Submit</button>
+  </div>
+</form>

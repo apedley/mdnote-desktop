@@ -86,3 +86,17 @@ export const selectCategoriesWithNotes = createSelector(
   }
 );
 
+export const selectCategoriesWithUncategorized = createSelector(selectAllCategories, (categories => {
+
+  const uncategorized: Category = {
+    name: 'Uncategorized',
+    id: 0
+  }
+
+  const completeCategories = [
+    uncategorized,
+    ...categories
+  ];
+
+  return completeCategories;
+}));

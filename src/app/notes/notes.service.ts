@@ -1,10 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromNotesRoot from './store/reducers';
+
 import * as notes from './store/actions';
-import { selectCategoriesWithNotes, selectAllCategories, selectCollapsedCategories, selectCategoriesLoaded, selectCurrentNote } from './store/selectors';
+import { selectCategoriesWithNotes, selectAllCategories, selectCollapsedCategories, selectCategoriesLoaded, selectCurrentNote, selectCategoriesWithUncategorized } from './store/selectors';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { Note, Category } from './note.model';
 
 @Injectable()
 export class NotesService implements OnDestroy {
@@ -74,5 +76,23 @@ export class NotesService implements OnDestroy {
 
   selectNote(id) {
     return this.notesStore.dispatch(new notes.SelectNote(String(id)));
+  }
+
+  getCategoriesWithUncategorized() {
+    return this.notesStore.select(selectCategoriesWithUncategorized);
+  }
+
+  createNote(note: Note) {
+    const sanitizedNote = this._fixCategoryId(note);
+    return this.notesStore.dispatch(new notes.CreateNote(sanitizedNote));
+  }
+
+  private _fixCategoryId(note: Note) {
+    if (note.categoryId === '0' || note.categoryId === 0) {
+      note.categoryId = null;
+    } else if (typeof note.categoryId === 'string') {
+      note.categoryId = parseInt(note.categoryId, 10);
+    }
+    return note;
   }
 }
