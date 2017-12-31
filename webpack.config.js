@@ -72,7 +72,9 @@ const styles = [
 const scripts = [
   "./node_modules/marked/lib/marked.js",
   "./node_modules/prismjs/prism.js",
-  "./node_modules/prismjs/components/prism-typescript.min.js"
+  "./node_modules/prismjs/components/prism-typescript.min.js",
+  "./node_modules/prismjs/components/prism-javascript.min.js",
+  "./node_modules/prismjs/components/prism-python.min.js",
   // "./node_modules/prismjs/components/prism-javascript.min.js"
 ];
 

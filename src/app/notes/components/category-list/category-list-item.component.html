@@ -27,7 +27,7 @@
       <span class="note-count">{{ category.notes.length > 0 ? category.notes.length : 'Empty' }}</span>
     </h5>
 
-    <div class="card-text" *ngIf="!collapsed"  [@flyInOut]="'in'">
+    <div class="card-text" *ngIf="!collapsed">
 
       <app-note-list *ngIf="category.notes.length > 0"
         [notes]="category.notes"

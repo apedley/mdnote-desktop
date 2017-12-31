@@ -2,6 +2,8 @@ import { app, BrowserWindow, screen, Tray, Menu } from 'electron';
 import * as path from 'path';
 
 let win, serve, tray;
+let appQuitting = false;
+
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
@@ -59,12 +61,15 @@ function createWindow() {
     // when you should delete the corresponding element.
     // win = null;
     // win.hide();
+    win = null;
   });
 
   win.on('close', (event) => {
-    if (!serve) {
+    // if (!serve) {
+    if (!appQuitting) {
       event.preventDefault();
     }
+    // }
     win.hide();
   });
 
@@ -104,7 +109,10 @@ function createWindow() {
       const menuConfig = Menu.buildFromTemplate([
         {
           label: 'Quit',
-          click: () => app.quit()
+          click: () => {
+            appQuitting = true;
+            app.quit()
+          }
         }
       ]);
 
@@ -124,7 +132,9 @@ try {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
-      app.quit();
+      if (appQuitting) {
+        app.quit();
+      }
     }
   });
 

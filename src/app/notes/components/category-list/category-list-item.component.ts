@@ -1,30 +1,30 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Category } from '../../note.model';
-import { trigger, state, style, animate, transition, AUTO_STYLE } from "@angular/animations";
+import { trigger, state, style, animate, transition, AUTO_STYLE } from '@angular/animations';
 
 @Component({
   selector: 'app-category-list-item',
   templateUrl: './category-list-item.component.html',
   styleUrls: [ './category-list-item.component.scss' ],
-  animations: [
-    trigger('flyInOut', [
-      transition(':enter', [
-        // style({ transform: 'translateY(-100%)', opacity: 0}),
-        // style({ transform: 'scale(0)', opacity: 0}),
-        style({ height: '0'}),
-        // animate('500ms', style({transform: 'translateY(0)', 'opacity': 1}))
-        // animate('500ms', style({transform: 'scale(1)', 'opacity': 1}))
-        animate('100ms', style({height: '*'}))
-      ]),
-      transition(':leave', [
-        // style({transform: 'translateY(0)', 'opacity': 1}),
-        // style({transform: 'scale(1)', 'opacity': 1}),
-        style({height: '*'}),
-        // animate('500ms', style({transform: 'scale(0)', 'opacity': 0}))
-        animate('100ms', style({height: '0'}))
-      ])
-    ])
-  ]
+  // animations: [
+  //   trigger('flyInOut', [
+  //     transition(':enter', [
+  //       // style({ transform: 'translateY(-100%)', opacity: 0}),
+  //       // style({ transform: 'scale(0)', opacity: 0}),
+  //       style({ height: '0'}),
+  //       // animate('500ms', style({transform: 'translateY(0)', 'opacity': 1}))
+  //       // animate('500ms', style({transform: 'scale(1)', 'opacity': 1}))
+  //       animate('100ms', style({height: '*'}))
+  //     ]),
+  //     transition(':leave', [
+  //       // style({transform: 'translateY(0)', 'opacity': 1}),
+  //       // style({transform: 'scale(1)', 'opacity': 1}),
+  //       style({height: '*'}),
+  //       // animate('500ms', style({transform: 'scale(0)', 'opacity': 0}))
+  //       animate('100ms', style({height: '0'}))
+  //     ])
+  //   ])
+  // ]
 })
 export class CategoryListItemComponent implements OnInit {
   @Input() category: Category;
