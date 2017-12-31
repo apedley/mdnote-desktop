@@ -6,11 +6,11 @@ import { NotesService } from '../../notes.service';
 import { Category, Note } from '../../note.model';
 
 @Component({
-  selector: 'app-create-note',
-  templateUrl: './create-note.component.html',
-  styleUrls: ['./create-note.component.scss']
+  selector: 'app-compose-note',
+  templateUrl: './compose-note.component.html',
+  styleUrls: ['./compose-note.component.scss']
 })
-export class CreateNoteComponent implements OnInit {
+export class ComposeNoteComponent implements OnInit {
 
   categories: Observable<Category[]>;
   body = '';

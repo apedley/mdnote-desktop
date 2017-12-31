@@ -1,0 +1,62 @@
+@import '../../../../theme.scss';
+
+// .title {
+//   background: $primaryColor;
+//   color: $contrastColor;
+
+//   font-weight: normal;
+//   font-size: 2em;
+//   padding: .5em 1em;
+//   margin-bottom: .5em;
+// }
+
+.title {
+  color: $primaryColor;
+  border-bottom: 3px solid $secondaryColor;
+  font-weight: normal;
+  font-size: 2em;
+  padding: .5em 1em;
+  margin-bottom: .5em;
+}
+.subheader button {
+  padding: 0 .5em;
+  margin-right: 1em;
+  background: $contrastColor;
+  color: rgba($primaryColor, .75);
+  line-height: 1.4em;
+}
+
+.subheader button i {
+  margin-right: .5em;
+}
+
+.subheader button:hover {
+  background: rgba($primaryColor, .75);
+  color: $contrastColor;
+}
+
+.category {
+  cursor: pointer;
+}
+
+
+.category:hover {
+  color: darken($subColor, 20%);
+}
+
+.category-name:hover {
+  border-bottom: 1px solid darken($subColor, 20%);
+}
+
+.category-info  {
+  color: $subColor;
+}
+
+.category-info i {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.header {
+  margin-bottom: 1.5em;
+}

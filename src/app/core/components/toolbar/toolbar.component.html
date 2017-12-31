@@ -1,7 +1,7 @@
 <!-- <a [routerLink]="['/signout']">Sign Out</a>
 <span>Welcome, {{ (user | async).email }}</span> -->
 <!-- <i class="fa fa-camera-retro"></i> fa-camera-retro -->
-<nav class="navbar navbar-dark bg-dark headerNav navbar-expand">
+<nav class="navbar headerNav navbar-expand">
     <!-- <a class="navbar-brand" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">mdNote</a> -->
 
     <div class="collapse navbar-collapse" id="headerNav">
@@ -50,15 +50,15 @@
       <ul class="navbar-nav ml-auto">
 
         <li ngbDropdown placement="bottom-right" class="d-inline-block nav-item">
-          <a class="nav-link active" id="userMenuDropdown" ngbDropdownToggle>
+          <a class="nav-link toolbar-link active" id="userMenuDropdown" ngbDropdownToggle>
             <i class="fa fa-user"></i>
             <!-- <span class="header-email">{{ (user | async).email }}</span> -->
           </a>
           <div ngbDropdownMenu aria-labelledby="userMenuDropdown">
-            <button class="dropdown-item" [routerLink]="['/']">{{ user.email }}</button>
-            <button class="dropdown-item" [routerLink]="['/']">Settings</button>
+            <button class="dropdown-item nav-dropdown-item" [routerLink]="['/']">{{ user.email }}</button>
+            <button class="dropdown-item nav-dropdown-item" [routerLink]="['/']">Settings</button>
             <div class="divider dropdown-divider"></div>
-            <button class="dropdown-item" [routerLink]="['/signout']">Sign Out</button>
+            <button class="dropdown-item nav-dropdown-item" [routerLink]="['/signout']">Sign Out</button>
           </div>
         </li>
       </ul>

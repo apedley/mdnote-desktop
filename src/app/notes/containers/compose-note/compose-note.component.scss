@@ -1,3 +1,5 @@
+@import '../../../../theme.scss';
+
 .edit-view {
   display: flex;
   justify-content: space-around;
@@ -7,4 +9,11 @@
 .edit-view * {
   flex: 1 1 auto;
   max-width: 48%;
+}
+
+.preview h5 {
+  color: $subColor;
+  font-size: .8em;
+  font-variant: small-caps;
+
 }

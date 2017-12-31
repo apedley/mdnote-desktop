@@ -1,4 +1,8 @@
-<app-layout [title]="(selectedNote | async).title">
-  <app-note-show *ngIf="selectedNote | async"
-  [note]="selectedNote | async"></app-note-show>
+
+<app-layout *ngIf="selectedNote | async as note" [title]="note.title">
+  <app-note-show
+    [note]="note"
+    (deleteNoteClicked)="displayDeleteNoteConfirmation($event)"
+    (shareNoteClicked)="shareNote($event)"
+    ></app-note-show>
 </app-layout>

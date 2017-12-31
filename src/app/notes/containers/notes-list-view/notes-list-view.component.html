@@ -11,7 +11,7 @@
     [category]="category"
     [collapsed]="(collapsedCategories | async)[category.id] === true"
     (categoryClicked)="toggleCategory($event)"
-    (noteClicked)="selectNote($event)"
+    (noteClicked)="showNote($event)"
     (categoryEditClicked)="editCategory($event)"
     (categoryDeleteClicked)="displayDeleteCategoryConfirmation($event)"
   >

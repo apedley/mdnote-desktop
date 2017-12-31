@@ -2,6 +2,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { selectNotesRootState } from './reducers';
 import * as fromCategories from './categories-reducer';
 import * as fromNotes from './notes-reducer';
+import * as fromRoot from '../../reducers';
 import { Category, Note } from '../note.model';
 
 export const selectNotesEntitiesState = createSelector(
@@ -100,3 +101,11 @@ export const selectCategoriesWithUncategorized = createSelector(selectAllCategor
 
   return completeCategories;
 }));
+
+export const selectRouteNote = createSelector(
+  selectNoteEntities,
+  fromRoot.getRouterState,
+  (entities, router) => {
+    return router.state && entities[router.state.params.id];
+  }
+);

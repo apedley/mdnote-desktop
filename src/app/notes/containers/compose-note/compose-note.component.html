@@ -5,6 +5,9 @@
     (formSubmitted)="formSubmitted($event)"
     (bodyChanged)="bodyChanged($event)">
   </app-edit-note-form>
-  <app-note-preview [body]="body"></app-note-preview>
+  <div class="preview">
+    <h5>Preview:</h5>
+    <app-note-preview [body]="body"></app-note-preview>
+  </div>
   </div>
 </app-layout>

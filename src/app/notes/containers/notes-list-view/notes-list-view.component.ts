@@ -6,6 +6,8 @@ import { NotesService } from '../../notes.service';
 import { Category, Note } from '../../note.model';
 
 import * as fromCategories from '../../store/categories-reducer'
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-notes-list-view',
   templateUrl: './notes-list-view.component.html',
@@ -16,7 +18,7 @@ export class NotesListViewComponent implements OnInit {
   collapsedCategories: Observable<any>;
   selectedNote: Observable<Note>;
 
-  constructor(private notes: NotesService) {
+  constructor(private notes: NotesService, private router: Router) {
   }
 
 
@@ -32,8 +34,12 @@ export class NotesListViewComponent implements OnInit {
     this.notes.toggleCategory(id);
   }
 
-  selectNote(id) {
-    this.notes.selectNote(id);
+  // selectNote(id) {
+  //   this.notes.selectNote(id);
+  // }
+
+  showNote(id) {
+    this.router.navigate(['/notes', id]);
   }
 
   displayDeleteCategoryConfirmation(id) {

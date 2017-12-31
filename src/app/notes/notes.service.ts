@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromNotesRoot from './store/reducers';
 
 import * as notes from './store/actions';
-import { selectCategoriesWithNotes, selectAllCategories, selectCollapsedCategories, selectCategoriesLoaded, selectCurrentNote, selectCategoriesWithUncategorized } from './store/selectors';
+import { selectCategoriesWithNotes, selectAllCategories, selectCollapsedCategories, selectCategoriesLoaded, selectCurrentNote, selectCategoriesWithUncategorized, selectRouteNote } from './store/selectors';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Note, Category } from './note.model';
@@ -72,6 +72,10 @@ export class NotesService implements OnDestroy {
 
   getSelectedNote() {
     return this.notesStore.select(selectCurrentNote);
+  }
+
+  getRouteNote() {
+    return this.notesStore.select(selectRouteNote);
   }
 
   selectNote(id) {

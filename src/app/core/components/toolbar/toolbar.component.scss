@@ -1,5 +1,11 @@
+@import '../../../../theme.scss';
+
+
 .headerNav {
   padding: 0;
+  background: $primaryColor;
+  z-index: 3;
+  @include box_shadow(2)
 }
 
 .dropdown-item {
@@ -12,10 +18,14 @@
 }
 
 .navbar-nav .toolbar-link {
-  color: #fff;
+  color: $contrastColor;
+}
+
+.navbar-nav .toolbar-link:hover {
+  color: lighten($primaryColor, 25%);
 }
 .active-text {
-  color: #fff
+  color: $contrastColor;
 }
 
 .title-nav {
@@ -28,4 +38,8 @@
   left: 25%;
   text-align: center;
   margin:0 auto;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background: $hoverBackgroundColorLight
 }

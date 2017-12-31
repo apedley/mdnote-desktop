@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 // @import '../node_modules/font-awesome/scss/font-awesome';
+@import './theme.scss';
 
 html, body {
   margin: 0;
@@ -9,3 +10,7 @@ html, body {
   height: 100%;
 }
 
+body {
+  background: $backgroundColor;
+  color: $baseTextColor;
+}

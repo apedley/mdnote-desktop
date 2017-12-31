@@ -1,0 +1,31 @@
+<div>
+  <div class="header">
+  <h3 class="title">{{ note.title }}</h3>
+
+  <h6 class="subheader">
+    <ul class="float-right category-info list-inline">
+      <li class="category list-inline-item"
+        [routerLink]="['/notes']"
+        [queryParams]="{categoryId: note.category ? note.category.id : 0}">
+        <i class="fa fa-folder"></i><span class="category-name">{{ note.category ? note.category.name : 'Uncategorized' }}</span>
+      </li>
+      <li class="updated list-inline-item">
+        <i class="fa fa-clock-o"></i>{{ note.updated_at | date:'short' }}
+      </li>
+    </ul>
+
+    <button class="btn btn-secondary btn-sm" [routerLink]="['/notes', 'edit', note.id]">
+      <i class="fa fa-pencil"></i>Edit
+    </button>
+
+    <button class="btn btn-secondary btn-sm" (click)="deleteClicked($event)">
+      <i class="fa fa-trash"></i>Delete
+    </button>
+    <button class="btn btn-secondary btn-sm" (click)="shareClicked($event)">
+      <i class="fa fa-external-link"></i>Share
+    </button>
+  </h6>
+  </div>
+  <markdown [data]="note.body">
+  </markdown>
+</div>

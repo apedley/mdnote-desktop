@@ -14,7 +14,14 @@ export class NoteDetailViewComponent implements OnInit {
   constructor(private notes: NotesService) {}
 
   ngOnInit() {
-    this.selectedNote = this.notes.getSelectedNote();
+    this.selectedNote = this.notes.getRouteNote();
   }
 
+  displayDeleteNoteConfirmation(id) {
+    console.log('delete? ' + id);
+  }
+
+  shareNote(id) {
+    console.log('share: ' + id);
+  }
 }

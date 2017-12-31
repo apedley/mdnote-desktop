@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { CoreModule } from '../core/core.module';
-import { CreateNoteComponent } from './containers/create-note/create-note.component';
+import { ComposeNoteComponent } from './containers/compose-note/compose-note.component';
 import { reducers } from './store/reducers';
 import { NotesService } from './notes.service';
 import { NotesEffects } from './store/effects';
@@ -30,7 +30,8 @@ import { DirectivesModule } from '../shared/directives/index';
     ReactiveFormsModule,
     MarkdownModule.forRoot(),
     RouterModule.forChild([
-      { path: 'new', pathMatch: 'full', component: CreateNoteComponent},
+      { path: 'new', pathMatch: 'full', component: ComposeNoteComponent},
+      { path: 'edit/:id', pathMatch: 'full', component: ComposeNoteComponent },
       { path: ':id', component: NoteDetailViewComponent },
       { path: '', pathMatch: 'full', component: NotesListViewComponent}
     ]),
@@ -40,7 +41,7 @@ import { DirectivesModule } from '../shared/directives/index';
     DirectivesModule
   ],
   declarations: [
-    CreateNoteComponent,
+    ComposeNoteComponent,
     CategoryListItemComponent,
     NotesListViewComponent,
     NoteListComponent,
