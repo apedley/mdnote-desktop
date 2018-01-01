@@ -3,9 +3,9 @@
 
     <h5 class="card-title" (click)="onCategoryClicked()">
       <div class="float-right category-actions">
-        <button class="btn btn-secondary btn-sm" [routerLink]="['/notes', 'new']" [queryParams]="{categoryId: category.id}">
+        <!-- <button class="btn btn-secondary btn-sm" [routerLink]="['/notes', 'new']" [queryParams]="{categoryId: category.id}">
           <i class="fa fa-plus"></i>
-        </button>
+        </button> -->
         <button *ngIf="category.name !== 'Uncategorized'"
           class="btn btn-secondary btn-sm"
           app-click-stop-propagation

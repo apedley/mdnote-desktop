@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Authenticate } from '../../user.model';
 
@@ -15,13 +15,13 @@ export class AuthFormComponent implements OnInit {
   public authForm: FormGroup;
 
   constructor(public fb: FormBuilder) { }
-
   ngOnInit() {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email] ],
       password: ['', [Validators.required, Validators.minLength(6)] ]
     });
   }
+
 
   submitAuthForm() {
     if (this.authForm.valid) {
@@ -31,6 +31,7 @@ export class AuthFormComponent implements OnInit {
       })
     }
   }
+
 
   forgotPassword() {
     debugger;

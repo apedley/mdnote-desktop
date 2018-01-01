@@ -1,10 +1,46 @@
-.first-card {
-  padding-top: 20px;
+@import '../../../../styles.scss';
+
+.auth {
+  height: 100vh;
+  background: $primaryColor;
 }
 
 .card {
-  width: 400px;
-  margin: 0 auto;
-  // padding: 1rem;
+  width: 65%;
   border: 0;
+  background: $primaryColor;
+  color: $contrastColor;
+}
+
+.card a {
+  color: $secondaryColor;
+}
+
+.card a:hover, .card a:focus {
+  // border-bottom: 1px solid $secondaryColor;
+  color: lighten($secondaryColor, 10%);
+  text-decoration: none;
+}
+
+.card-body {
+  padding: 5% 12%;
+  background: rgba(10, 10, 10, 0.4);
+}
+.form-card h4.card-title {
+  font-weight: normal;
+  font-size: 2.5em;
+  padding: .5em 1em;
+}
+
+// .form-card h4.card-title {
+//   color: $primaryColor;
+//   // border-bottom: 5px solid $secondaryColor;
+//   padding: .5em 1em;
+//   font-weight: bold;
+//   font-size: 2em;
+//   // text-align: left;
+// }
+
+.link-card {
+  margin-bottom: 1rem;
 }

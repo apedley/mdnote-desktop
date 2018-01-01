@@ -1,3 +1,37 @@
-button {
-  margin: 0 10px;
+@import '../../../../styles.scss';
+
+
+.invalid-feedback {
+  color: $secondaryColor;
+}
+
+.form-control.is-invalid {
+  border-color: $secondaryColor;
+  border-width: 2px;
+}
+
+.auth-buttons button.btn-primary {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  text-transform: uppercase;
+  font-size: 1em;
+  padding: .6em 2em;
+  margin: 1em auto;
+}
+
+.auth-buttons button.btn-primary:hover {
+  background-color: lighten($primaryColor, 10%);
+}
+
+.auth-buttons button.btn-primary:focus {
+  // box-shadow: 0 0 0 0.2rem lighten($primaryColor, 10%);
+  // border: lighten($primaryColor, 15%);
+  border-color: $secondaryColor;
+  @include box_shadow(1);
+}
+
+input.text-control {
+  background: rgba(0, 0, 0, .4);
+  color: $contrastColor;
+  margin: 5px 0;
 }

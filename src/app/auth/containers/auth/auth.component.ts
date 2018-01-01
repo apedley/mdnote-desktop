@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import * as fromRoot from '../../../reducers';
 import { AuthService } from '../../auth.service';
 import { takeLast, take, tap } from 'rxjs/operators';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { Subscription } from "rxjs/Subscription";
-import { Authenticate } from "../../user.model";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription } from 'rxjs/Subscription';
+import { Authenticate } from '../../user.model';
 
 @Component({
   selector: 'app-auth',

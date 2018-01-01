@@ -36,8 +36,13 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
+    backgroundColor: '#2e2c29',
     show: false,
     resizable: false,
+    fullscreenable: false,
+    titleBarStyle: 'customButtonsOnHover', frame: false,
+    title: 'mdNote',
+
     webPreferences: {
       textAreasAreResizable: false
     }

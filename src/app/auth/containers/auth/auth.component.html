@@ -1,5 +1,5 @@
-<div>
-  <div class="card text-center first-card">
+<div class="auth row align-items-center justify-content-center">
+  <div class="card text-center form-card">
     <div class="card-body">
       <h4 class="card-title">{{ (url | async) === "/signin" ? "Sign In" : "Sign Up" }}</h4>
       <div class="card-text">
@@ -9,11 +9,12 @@
     </div>
   </div>
 
-  <div class="card text-center" *ngIf="(url | async) === '/signin'">
+  <div class="card text-center link-card" *ngIf="(url | async) === '/signin'">
+    <!-- <button type="button" class="btn btn-secondary" (click)="forgotPassword" *ngIf="mode === '/signin'">Forgot Password</button> -->
     Need an account? <a [routerLink]="['/signup']">Click here to sign up.</a>
   </div>
 
-  <div class="card text-center" *ngIf="(url | async) === '/signup'">
+  <div class="card text-center link-card" *ngIf="(url | async) === '/signup'">
     Already signed up? <a [routerLink]="['/signin']">Click here to sign in.</a>
   </div>
 </div>

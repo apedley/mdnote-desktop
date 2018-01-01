@@ -38,6 +38,9 @@
   left: 25%;
   text-align: center;
   margin:0 auto;
+  -webkit-app-region: drag;
+  // -webkit-user-select: none;
+  cursor: default;
 }
 
 .dropdown-item:focus, .dropdown-item:hover {

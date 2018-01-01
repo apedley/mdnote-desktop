@@ -1,6 +1,5 @@
 {
-  "appid": "com.andrewpedley.mdnote.app",
-  "productName": "mdnote",
+  "productName": "angular-electron",
   "directories": {
     "app": "dist",
     "output": "app-builds"
@@ -12,7 +11,6 @@
     ]
   },
   "mac": {
-    "category": "public.app-category.productivity",
     "icon": "dist/favicon",
     "target": [
       "dmg"

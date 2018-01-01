@@ -32,6 +32,8 @@
         "electron:linux": "npm run build:prod && npx electron-builder build --linux",
         "electron:windows": "npm run build:prod && npx electron-builder build --windows",
         "electron:mac": "npm run build:prod && npx electron-builder build --mac",
+        "packager:mac": "node ./run-packager.js --asar --platform=darwin --arch=x64",
+        "packager:linux": "node ./run-packager.js --asar --platform=linux --arch=x64",
         "test": "karma start ./karma.conf.js",
         "pree2e": "webdriver-manager update --standalone false --gecko false --quiet && npm run build",
         "e2e": "protractor ./protractor.conf.js"

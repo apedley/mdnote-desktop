@@ -1,20 +1,24 @@
 <form [formGroup]="authForm" (ngSubmit)="submitAuthForm()">
   <div class="form-group">
     <!-- <label for="authEmail">Email Address</label> -->
-    <input formControlName="email" placeholder="Email Address" id="authEmail" class="form-control" [class.is-invalid]="!authForm.controls.email.valid && authForm.controls.email.touched">
-    <div class="invalid-feedback" *ngIf="authForm.controls['email'].hasError('email')">
+    <input
+      formControlName="email"
+      placeholder="Email Address" id="authEmail"
+      class="form-control text-control"
+      [class.is-invalid]="!authForm.controls.email.valid && authForm.controls.email.touched"
+    >
+    <!-- <div class="invalid-feedback" *ngIf="authForm.controls['email'].hasError('email')">
       Please enter a valid email address
-    </div>
+    </div> -->
   </div>
   <div class="form-group">
     <!-- <label for="authPassword">Password</label> -->
-    <input type="password" formControlName="password" placeholder="Password" id="authPassword" class="form-control" [class.is-invalid]="!authForm.controls.password.valid && authForm.controls.password.touched">
-    <div class="invalid-feedback" *ngIf="authForm.controls['password'].hasError('minlength') || authForm.controls['password'].hasError('required')">
+    <input type="password" formControlName="password" placeholder="Password" id="authPassword" class="form-control text-control" [class.is-invalid]="!authForm.controls.password.valid && authForm.controls.password.touched">
+    <!-- <div class="invalid-feedback" *ngIf="authForm.controls['password'].hasError('minlength') || authForm.controls['password'].hasError('required')">
       Please enter at least 6 characters
-    </div>
+    </div> -->
   </div>
-  <div class="buttons">
+  <div class="auth-buttons">
     <button type="submit" class="btn btn-primary" [disabled]="formLoading">Submit</button>
-    <button type="button" class="btn btn-secondary" (click)="forgotPassword" *ngIf="mode === '/signin'">Forgot Password</button>
   </div>
 </form>
