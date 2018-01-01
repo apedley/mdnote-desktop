@@ -1,7 +1,7 @@
 {
     "name": "mdnote-desktop",
     "version": "0.1.0",
-    "description": "",
+    "description": "desktop app for note taking in markdown",
     "homepage": "https://github.com/apedley/mdnote-desktop",
     "author": {
         "name": "Andrew Pedley",
@@ -128,27 +128,5 @@
         "webpack-concat-plugin": "1.4.0",
         "webpack-dev-server": "2.9.3"
     },
-    "license": "SEE LICENSE IN LICENSE.md",
-    "build": {
-        "appId": "com.electron.mdnote-desktop",
-        "copyright": "Copyright © 2017 [object Object]",
-        "productName": "mdnote-desktop",
-        "electronVersion": "1.7.8",
-        "asar": true,
-        "directories": {
-            "app": "/Users/andrew/Documents/Projects/mdnote-desktop",
-            "output": "dist"
-        },
-        "mac": {
-            "category": "public.app-category.productivity",
-            "target": [
-                {
-                    "target": "dmg",
-                    "arch": [
-                        "x64"
-                    ]
-                }
-            ]
-        }
-    }
+    "license": "SEE LICENSE IN LICENSE.md"
 }
