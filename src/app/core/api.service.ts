@@ -84,6 +84,16 @@ export class ApiService {
     });
   }
 
+  createNoteShare(id: number) {
+    const url = `${environment.apiBaseUrl}/notes/${id}/share`;
+    const authHeader = `bearer ${this.authToken}`;
+
+    return this.httpClient.post<Note>(url, {}, {
+      headers: new HttpHeaders().set('Authorization', authHeader)
+    });
+
+  }
+
   private _removeInvalidKeys(dataObject: any) {
     return Object.keys(dataObject).reduce((prev, key) => {
       if (dataObject[key] && dataObject[key] !== 'null') {

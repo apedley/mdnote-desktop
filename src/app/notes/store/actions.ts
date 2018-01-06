@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import {  } from '@ngrx/entity';
-import { Note, Category } from '../note.model';
+import { Note, Category, Share } from '../note.model';
 
 export const FETCH_NOTES = '[Notes] Fetch Notes';
 export const FETCH_NOTES_SUCCESS = '[Notes] Fetch Notes Success';
@@ -32,6 +32,10 @@ export const CREATE_CATEGORY = '[Categories] Create Category';
 export const CREATE_CATEGORY_SUCCESS = '[Categories] Create Category Success';
 export const CREATE_CATEGORY_FAILURE = '[Categories] Create Category Failure';
 
+
+export const CREATE_NOTE_SHARE = '[Notes] Create Share';
+export const CREATE_NOTE_SHARE_FAILURE = '[Notes] Create Note Share Failure';
+export const CREATE_NOTE_SHARE_SUCCESS = '[Notes] Create Note Share Success';
 
 
 export class FetchNotes implements Action {
@@ -162,6 +166,25 @@ export class CreateCategoryFailure implements Action {
   constructor(public errors: string[]) {}
 }
 
+
+
+export class CreateNoteShare implements Action {
+  readonly type = CREATE_NOTE_SHARE;
+
+  constructor(public payload: number) {}
+}
+
+export class CreateNoteShareSuccess implements Action {
+  readonly type = CREATE_NOTE_SHARE_SUCCESS;
+
+  constructor(public payload: Share) {}
+}
+export class CreateNoteShareFailure implements Action {
+  readonly type = CREATE_NOTE_SHARE_FAILURE;
+
+  constructor(public errors: string[]) {}
+}
+
 export type actions =
   FetchNotes |
   FetchNotesSuccess |
@@ -184,4 +207,7 @@ export type actions =
   UpdateNoteFailure |
   CreateCategory |
   CreateCategorySuccess |
-  CreateCategoryFailure;
+  CreateCategoryFailure |
+  CreateNoteShare |
+  CreateNoteShareSuccess |
+  CreateNoteShareFailure;

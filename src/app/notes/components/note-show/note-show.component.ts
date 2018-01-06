@@ -13,7 +13,6 @@ export class NoteShowComponent implements OnInit {
   constructor() {}
 
   shareClicked(event) {
-    console.dir(event);
     let id = this.note.id;
     if (typeof id === 'string') {
       id = parseInt(id, 10);
@@ -22,7 +21,6 @@ export class NoteShowComponent implements OnInit {
   }
 
   deleteClicked(event) {
-    console.dir(event);
     let id = this.note.id;
     if (typeof id === 'string') {
       id = parseInt(id, 10);

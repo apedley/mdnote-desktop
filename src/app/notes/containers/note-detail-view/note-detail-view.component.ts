@@ -22,6 +22,6 @@ export class NoteDetailViewComponent implements OnInit {
   }
 
   shareNote(id) {
-    console.log('share: ' + id);
+    this.notes.createShare(id);
   }
 }

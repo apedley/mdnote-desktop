@@ -7,8 +7,9 @@ import { of } from 'rxjs/observable/of';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { map, tap, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { ApiService } from '../../core/api.service';
+import { UiService } from '../../core/ui.service';
 import { Router } from '@angular/router';
-import { Note } from '../note.model';
+import { Note, Share } from '../note.model';
 
 @Injectable()
 export class NotesEffects {
@@ -94,6 +95,20 @@ export class NotesEffects {
     catchError(error => of(new notes.UpdateNoteFailure([error])))
   )
 
-  constructor(private actions: Actions, private api: ApiService, private router: Router) {}
+  @Effect()
+  createNoteShare = this.actions.ofType(notes.CREATE_NOTE_SHARE).pipe(
+    switchMap((action: notes.CreateNoteShare) => {
+      return this.api.createNoteShare(action.payload);
+    }),
+    map((share: Share) => {
+      // this.uiService.displayShare(share);
+      return {
+        type: notes.CREATE_NOTE_SHARE_SUCCESS,
+        payload: share
+      }
+    }),
+    catchError(error => of(new notes.CreateNoteShareFailure([error])))
+  )
+  constructor(private actions: Actions, private api: ApiService, private router: Router, private uiService: UiService) {}
 }
 

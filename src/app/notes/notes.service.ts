@@ -96,6 +96,10 @@ export class NotesService implements OnDestroy {
     this.notesStore.dispatch(new notes.UpdateNote(id, note));
   }
 
+  createShare(id: any) {
+    return this.notesStore.dispatch(new notes.CreateNoteShare(id));
+  }
+
   private _fixCategoryId(note: Note) {
     if (note.categoryId === '0' || note.categoryId === 0) {
       note.categoryId = null;

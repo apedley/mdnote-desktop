@@ -1,11 +1,11 @@
 import * as actions from './actions';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
-import { Note, Category } from '../note.model';
+import { Note, Category, Share } from '../note.model';
 
 export interface State extends EntityState<Note> {
   selectedNoteId: string | number | null;
-  loaded: boolean
+  loaded: boolean;
 }
 
 export const adapter: EntityAdapter<Note> = createEntityAdapter<Note>({
@@ -15,7 +15,7 @@ export const adapter: EntityAdapter<Note> = createEntityAdapter<Note>({
 
 export const initialState: State = adapter.getInitialState({
   selectedNoteId: null,
-  loaded: false
+  loaded: false,
 });
 
 export function reducer(state = initialState, action: actions.actions) {

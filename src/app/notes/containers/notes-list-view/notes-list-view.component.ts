@@ -7,6 +7,7 @@ import { Category, Note } from '../../note.model';
 
 import * as fromCategories from '../../store/categories-reducer'
 import { Router } from "@angular/router";
+import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-notes-list-view',
@@ -18,7 +19,7 @@ export class NotesListViewComponent implements OnInit {
   collapsedCategories: Observable<any>;
   selectedNote: Observable<Note>;
 
-  constructor(private notes: NotesService, private router: Router) {
+  constructor(private notes: NotesService, private router: Router, private mdService: MarkdownService) {
   }
 
 

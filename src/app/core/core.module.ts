@@ -10,6 +10,8 @@ import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { PipesModule } from '../shared/pipes/index';
+import { UiService } from './ui.service';
+import { ShareUrlModalComponent } from './components/modals/share-url-modal.component';
 
 @NgModule({
   imports: [
@@ -28,12 +30,17 @@ import { PipesModule } from '../shared/pipes/index';
     LayoutComponent,
     HeaderComponent,
     HomeViewComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ShareUrlModalComponent
   ],
   providers: [
     ElectronService,
     ApiService,
-    StorageService
+    StorageService,
+    UiService
+  ],
+  entryComponents: [
+    ShareUrlModalComponent
   ]
 })
 export class CoreModule { }

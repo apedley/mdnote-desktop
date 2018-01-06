@@ -26,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthEffects } from './auth/store/effects';
 import * as fromRootStore from './reducers';
 import { RouterEffects } from './core/store/router-effects';
+import { UiEffects } from './core/store/ui-effects';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { RouterEffects } from './core/store/router-effects';
     CoreModule,
     AuthModule,
     StoreRouterConnectingModule,
-    EffectsModule.forRoot([AuthEffects, RouterEffects]),
+    EffectsModule.forRoot([AuthEffects, RouterEffects, UiEffects]),
     StoreModule.forRoot(fromRootStore.reducers),
     // StoreModule.forRoot(fromRootStore.reducers, {metaReducers: fromRootStore.metaReducers}),
     !environment.production

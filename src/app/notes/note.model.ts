@@ -19,3 +19,14 @@ export interface Note {
   categoryId?: string | number;
   category?: Category;
 }
+
+export interface Share {
+  title: string;
+  body: string;
+  id: number;
+  url: string;
+  created_at?: string;
+  updated_at?: string;
+  noteId?: number;
+  userId?: number;
+}

@@ -40,7 +40,7 @@ function createWindow() {
     show: false,
     resizable: false,
     fullscreenable: false,
-    titleBarStyle: 'customButtonsOnHover', frame: false,
+    frame: false,
     title: 'mdNote',
 
     webPreferences: {
