@@ -1,8 +1,14 @@
-import { app, BrowserWindow, screen, Tray, Menu } from 'electron';
+import { app, BrowserWindow, screen, Tray, Menu, Notification } from 'electron';
+const MainWindow = require('./app/MainWindow');
+const MdnoteTray = require('./app/MdnoteTray');
+const MenuBuilder = require('./app/MenuBuilder');
+
 import * as path from 'path';
 
 let win, serve, tray;
-let appQuitting = false;
+
+
+// let win, serve;
 
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
@@ -12,45 +18,18 @@ if (serve) {
   });
 }
 
+
+
 function createWindow() {
   const electronScreen = screen;
-  let size;
-
-  if (serve) {
-    size = {
-      height: 600,
-      width: 800
-    }
-
-  } else {
-    app.dock.hide();
-    size = {
-      height: 600,
-      width: 800
-    }
-  }
 
   // Create the browser window.
-  win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
-    backgroundColor: '#2e2c29',
-    show: false,
-    resizable: false,
-    fullscreenable: false,
-    frame: false,
-    title: 'mdNote',
-
-    webPreferences: {
-      textAreasAreResizable: false
-    }
-  });
+  win = new MainWindow();
 
   if (serve) {
     BrowserWindow.addDevToolsExtension('/Users/andrew/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.15.1_0');
   }
+
   // and load the index.html of the app.
   win.loadURL('file://' + __dirname + '/index.html');
 
@@ -61,25 +40,18 @@ function createWindow() {
 
   // Emitted when the window is closed.
   win.on('closed', () => {
-    // Dereference the window object, usually you would store window
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    // win = null;
-    // win.hide();
     win = null;
   });
 
   win.on('close', (event) => {
-    // if (!serve) {
-    if (!appQuitting) {
+    if (!serve) {
       event.preventDefault();
     }
-    // }
     win.hide();
   });
 
   win.on('ready-to-show', () => {
-    const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
+    const iconName = process.platform === 'win32' ? 'pencil-windows.png' : 'pencil.png';
     let iconPath;
 
     if (serve) {
@@ -89,40 +61,13 @@ function createWindow() {
       iconPath = path.join(__dirname, `./assets/${iconName}`);
     }
 
-    // tray = new MdNoteTray(iconPath, win);
-    tray = new Tray(iconPath);
+    tray = new MdnoteTray(iconPath, win);
 
-    tray.on('click', (event, bounds) => {
-      const { x, y } = bounds;
-      const { height, width } = win.getBounds();
-
-      if (win.isVisible()) {
-        win.hide();
-      } else {
-        const yPosition = process.platform === 'darwin' ? y : y - height;
-        win.setBounds({
-          x: x - width / 2,
-          y: yPosition,
-          height,
-          width
-        });
-        win.show();
-      }
+    const notify = new Notification({
+      title: 'Hello',
+      body: 'Activation notification.'
     });
-
-    tray.on('right-click', (event) => {
-      const menuConfig = Menu.buildFromTemplate([
-        {
-          label: 'Quit',
-          click: () => {
-            appQuitting = true;
-            app.quit()
-          }
-        }
-      ]);
-
-      tray.popUpContextMenu(menuConfig);
-    })
+    notify.show();
   })
 }
 
@@ -130,26 +75,38 @@ try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', createWindow);
+  app.on('ready', () => {
+
+
+    createWindow();
+
+    const appMenu = MenuBuilder.appMenu();
+
+    Menu.setApplicationMenu(appMenu);
+
+
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
-      if (appQuitting) {
-        app.quit();
-      }
+        // app.quit();
     }
   });
 
   app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (win === null) {
-      createWindow();
-    }
+    // if (win === null) {
+    //   win = createWindow();
+    // }
+
+
   });
+
+
 
 } catch (e) {
   // Catch Error

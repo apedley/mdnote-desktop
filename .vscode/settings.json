@@ -1,8 +1,12 @@
 {
   "files.exclude": {
     "**/.git": true,
-    "dist": true,
-    "app-builds": true
+    "app-builds": true,
+    "dist": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true
   },
   "typescript.tsdk": "node_modules/typescript/lib"
 }

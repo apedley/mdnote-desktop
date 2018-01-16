@@ -11,13 +11,15 @@
     ]
   },
   "mac": {
-    "icon": "src/lion.icns",
+    "icon": "src/favicon.icns",
+    "category": "public.app-category.productivity",
     "target": [
-      "dmg"
+      "dmg",
+      "zip"
     ]
   },
   "linux": {
-    "icon": "src/lion.iconset",
+    "icon": "src/favicon.iconset",
     "target": [
       "AppImage"
     ]
