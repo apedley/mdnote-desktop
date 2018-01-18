@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen, Tray, Menu, Notification } from 'electron';
+import { app, BrowserWindow, screen, Tray, Menu } from 'electron';
 const MainWindow = require('./app/MainWindow');
 const MdnoteTray = require('./app/MdnoteTray');
 const MenuBuilder = require('./app/MenuBuilder');
@@ -7,8 +7,6 @@ import * as path from 'path';
 
 let win, serve, tray;
 
-
-// let win, serve;
 
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
@@ -63,11 +61,6 @@ function createWindow() {
 
     tray = new MdnoteTray(iconPath, win);
 
-    const notify = new Notification({
-      title: 'Hello',
-      body: 'Activation notification.'
-    });
-    notify.show();
   })
 }
 
